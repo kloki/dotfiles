@@ -1,0 +1,5 @@
+open /etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i8042.reset i8042.nomux i8042.nopnp i8042.noloop"
+
+sudo update-grub

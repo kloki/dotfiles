@@ -1,0 +1,224 @@
+# i3 config file (v4)
+set $mod Mod4
+
+font pango:Fantasque Sans Mono 12
+
+#colors
+set $green #50fa7b
+set $background #44475a
+set $red #ff79c6
+set $blue #646887
+set $yellow #50fa7b
+set $white #f8f8f2
+set $black #282a36
+
+#                           border  backgr. text    indicator
+client.focused              $background $blue $white $yellow
+client.focused_inactive     $background $blue $white $background
+client.unfocused            $background $background $white $background
+client.urgent               $red $red $white $background
+
+new_window pixel 2
+
+#
+focus_follows_mouse no
+mouse_warping none
+
+# keybindings
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+
+for_window [class="float"] floating enable
+
+bindsym $mod+Return exec terminator --class=float
+bindsym $mod+Shift+Return exec subl
+bindsym $mod+m exec export EDITOR="subl -b" && terminator --command=ranger --class=float
+bindsym $mod+space exec /home/koen/setup/scripts/rofi.sh
+bindsym $mod+Tab exec /home/koen/setup/scripts/rofi.sh
+#bindsym $mod+space exec /home/koen/setup/scripts/dzenburn.sh
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+c floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+c focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Pulse Audio controls
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws0 "0"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session
+set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id /home/koen/setup/scripts/i3exit.sh lock, mode "default"
+    bindsym e exec --no-startup-id /home/koen/setup/scripts/i3exit.sh logout, mode "default"
+    bindsym r exec --no-startup-id /home/koen/setup/scripts/i3exit.sh reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id /home/koen/setup/scripts/i3exit.sh shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+z mode "$mode_system"
+
+
+set $option_mode Screen: Dual(1) Only Laptop (2) Keyboard: Standard(3) Workman(4)
+mode "$option_mode" {
+    bindsym 1 exec --no-startup-id /home/koen/setup/scripts/dual_screen.sh, mode "default"
+    bindsym 2 exec --no-startup-id /home/koen/setup/scripts/single_screen.sh mode "default"
+    bindsym 3 exec setxkbmap -variant euro, mode "default"
+    bindsym 4 exec setxkbmap -variant workman, mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+x mode "$option_mode"
+
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+#        status_command i3blocks
+#    	#status_command i3status
+#	position bottom
+#	colors {
+#        	background $background
+#        	statusline $white
+#            #                  border  backround text
+#        	focused_workspace  $blue $blue $background
+#        	active_workspace   $green $green $background
+#        	inactive_workspace $background $background $white
+#        	urgent_workspace   $red $red $background
+#    	}
+#}
+
+
+
+bindsym $mod+Shift+braceleft move workspace to output left
+bindsym $mod+Shift+braceright move workspace to output right
+
+#applets
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+
+#swapcaps
+#exec_always --no-startup-id setxkbmap -option ctrl:swapcaps
+#exec_always --no-startup-id setxkbmap -variant workman
+
+#wallpaper
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id dunst -config "/home/koen/.dunstrc"
+
+
+#compton
+exec compton -f -D 8
+
+
+#polybar
+
+exec polybar top

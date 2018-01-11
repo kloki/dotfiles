@@ -1,0 +1,1 @@
+rofi -show run -modi "window,run" -sidebar-mode -hide-scrollbar -lines 9 -fixed-lines 9 -fixed-num-lines 9 -eh 1 -width 30 -bw 2 -bw 0 -color-window "#282a36,#50fa7b,#50fa7b" -color-normal "#282a36,#646887,#282a36,#282a36,#ff79c6" -color-active "#282a36,#646887,#282a36,#282a36,#ff79c6" -font "Fantasque Sans Mono 14"

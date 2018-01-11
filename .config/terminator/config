@@ -1,0 +1,43 @@
+[global_config]
+  always_split_with_profile = True
+  geometry_hinting = False
+  inactive_color_offset = 1.0
+  tab_position = hidden
+  title_transmit_bg_color = "#d30102"
+  window_state = hidden
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = Dracula
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    use_system_font = False
+  [[Dracula]]
+    background_color = "#282a36"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    font = FantasqueSansMono Nerd Font 12
+    foreground_color = "#f8f8f2"
+    palette = "#6d6f81:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#6d6f81:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
+    scroll_on_output = False
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[Zenburn]]
+    background_color = "#3f3f3f"
+    background_image = None
+    cursor_color = "#dcdcdc"
+    font = Fantasque Sans Mono 12
+    foreground_color = "#dcdcdc"
+    palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

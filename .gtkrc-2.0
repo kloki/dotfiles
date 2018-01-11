@@ -1,0 +1,4 @@
+# Custom styles
+gtk-theme-name = "Arc-Darker"
+gtk-font-name = "Fantasque Sans Mono 10"
+gtk-icon-theme-name = "Numix"
